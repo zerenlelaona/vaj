@@ -1,0 +1,18 @@
+{
+  "name": "VAJ — Visa-Aware Jobs NL",
+  "short_name": "VAJ",
+  "description": "Check IND recognised sponsors and track job applications by permit fit.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
