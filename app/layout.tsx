@@ -49,35 +49,35 @@ export default function RootLayout({
                 Visa-Aware Jobs NL
               </span>
             </Link>
-            {/* wraps to its own row on phones so no tab gets cut off */}
-            <div className="-mx-1 flex w-full items-center justify-between gap-1 text-sm sm:ml-auto sm:w-auto sm:justify-end">
+            {/* wraps to its own row on phones; scrolls if it still overflows */}
+            <div className="-mx-1 flex w-full items-center justify-between gap-0.5 overflow-x-auto text-[13px] sm:ml-auto sm:w-auto sm:justify-end sm:gap-1 sm:text-sm">
               <Link
                 href="/"
-                className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                className="shrink-0 rounded-md px-2 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 sm:px-3"
               >
                 Check
               </Link>
               <Link
                 href="/discover"
-                className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                className="shrink-0 rounded-md px-2 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 sm:px-3"
               >
                 Discover
               </Link>
               <Link
                 href="/sponsors"
-                className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                className="shrink-0 rounded-md px-2 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 sm:px-3"
               >
                 Sponsors
               </Link>
               <Link
                 href="/tracker"
-                className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                className="shrink-0 rounded-md px-2 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 sm:px-3"
               >
                 Tracker
               </Link>
               <Link
                 href="/stories"
-                className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                className="shrink-0 rounded-md px-2 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 sm:px-3"
               >
                 Stories
               </Link>
