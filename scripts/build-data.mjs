@@ -138,11 +138,21 @@ function findInRegister(company, index) {
 const register = await loadRegister();
 
 fs.mkdirSync(PUBLIC, { recursive: true });
+
+// Reuse the previous generatedAt when the content is byte-identical, so a
+// scheduled run doesn't create a diff (and a pointless redeploy) purely from a
+// fresh timestamp. "Changed" should mean the register really changed.
+const prevSponsors = readCache();
+const sponsorsSame =
+  prevSponsors &&
+  prevSponsors.indLastUpdated === register.indLastUpdated &&
+  JSON.stringify(prevSponsors.sponsors) === JSON.stringify(register.sponsors);
+
 fs.writeFileSync(
   SPONSORS_FILE,
   JSON.stringify({
     indLastUpdated: register.indLastUpdated,
-    generatedAt: register.generatedAt,
+    generatedAt: sponsorsSame ? prevSponsors.generatedAt : register.generatedAt,
     count: register.count,
     sponsors: register.sponsors,
   })
@@ -163,11 +173,21 @@ const resolved = COMPANIES.map((c) => {
   };
 });
 
+const prevResolved = fs.existsSync(RESOLVED_FILE)
+  ? JSON.parse(fs.readFileSync(RESOLVED_FILE, "utf8"))
+  : null;
+const resolvedSame =
+  prevResolved &&
+  prevResolved.indLastUpdated === register.indLastUpdated &&
+  JSON.stringify(prevResolved.companies) === JSON.stringify(resolved);
+
 fs.writeFileSync(
   RESOLVED_FILE,
   JSON.stringify({
     indLastUpdated: register.indLastUpdated,
-    generatedAt: register.generatedAt,
+    generatedAt: resolvedSame
+      ? prevResolved.generatedAt
+      : register.generatedAt,
     companies: resolved,
   })
 );
