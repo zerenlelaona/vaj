@@ -41,7 +41,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <ServiceWorker />
         <header className="border-b border-slate-200 bg-white">
-          <nav className="mx-auto flex max-w-5xl items-center gap-6 px-4 py-3">
+          <nav className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-1 px-4 py-3">
             <Link href="/" className="flex items-center gap-2 font-semibold">
               <span className="text-lg">🇳🇱</span>
               <span>VAJ</span>
@@ -49,7 +49,8 @@ export default function RootLayout({
                 Visa-Aware Jobs NL
               </span>
             </Link>
-            <div className="ml-auto flex items-center gap-1 text-sm">
+            {/* wraps to its own row on phones so no tab gets cut off */}
+            <div className="-mx-1 flex w-full items-center justify-between gap-1 text-sm sm:ml-auto sm:w-auto sm:justify-end">
               <Link
                 href="/"
                 className="rounded-md px-3 py-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900"
