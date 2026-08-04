@@ -29,6 +29,12 @@ jobs:
       # linux-only native binaries Tailwind depends on, which makes `npm ci`
       # refuse to run on the ubuntu runner.
       - run: npm install --no-audit --no-fund
+      # Re-resolve the curated companies against the committed register, so
+      # edits to lib/companies.ts take effect without waiting for the monthly
+      # refresh. --offline means this never hits ind.nl on a normal deploy.
+      - name: Resolve company data
+        run: node scripts/build-data.mjs --offline
+
       - name: Build static site
         env:
           # GitHub Pages serves a project site from /<repo>
