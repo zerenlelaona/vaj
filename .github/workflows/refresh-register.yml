@@ -25,7 +25,8 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
+      # See deploy.yml: npm ci can't be used with a macOS-generated lock file.
+      - run: npm install --no-audit --no-fund
 
       - name: Fetch and parse the register
         # --strict: fail loudly rather than silently keeping stale data

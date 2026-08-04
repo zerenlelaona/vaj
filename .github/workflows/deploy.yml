@@ -25,7 +25,10 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
+      # npm install, not npm ci: a lock file generated on macOS omits the
+      # linux-only native binaries Tailwind depends on, which makes `npm ci`
+      # refuse to run on the ubuntu runner.
+      - run: npm install --no-audit --no-fund
       - name: Build static site
         env:
           # GitHub Pages serves a project site from /<repo>
